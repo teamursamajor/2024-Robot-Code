@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
  */
 public final class Constants {
   public static final int DRIVER_CONTROLLER_PORT = 0;
-  private static final CommandXboxController XBOX_CONTROLLER =
+  public static final CommandXboxController XBOX_CONTROLLER =
       new CommandXboxController(0);
 
   static Translation2d m_frontLeftLocation = new Translation2d(0.381, 0.381);

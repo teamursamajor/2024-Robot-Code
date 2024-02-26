@@ -41,11 +41,8 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    //sets the climb motors to brake mode
-    m_robotContainer.m_climb.setFalonMode();
-
     // Only vision in robotInit below here
-    m_visionThread =
+    /*m_visionThread =
         new Thread(
             () -> {
               var camera = CameraServer.startAutomaticCapture();
@@ -141,7 +138,7 @@ public class Robot extends TimedRobot {
             });
     m_visionThread.setDaemon(true);
     m_visionThread.start();
-    
+    */
 
 
   }

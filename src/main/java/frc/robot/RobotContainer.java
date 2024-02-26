@@ -48,10 +48,13 @@ public class RobotContainer {
   public final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
   public final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
   
+  
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
-  private final ShooterSubsystem m_shooter = new ShooterSubsystem();
-  public final ClimbSubsystem m_climb = new ClimbSubsystem();
+  //private final ShooterSubsystem m_shooter = new ShooterSubsystem();
+  //public final ClimbSubsystem m_climb = new ClimbSubsystem();
+  //public final AutoSpeakerCommand autoShoot = new AutoSpeakerCommand(m_shooter);
+
   //public final FalconMotor falcon = new FalconMotor();
   //public final NeoMotor neo = new NeoMotor();
   //private TestDriveCommand test = new TestDriveCommand(falcon);
@@ -69,7 +72,6 @@ public class RobotContainer {
 
   // The driver's controller
   XboxController m_driverController = new XboxController(0);
-  public static final CommandXboxController XBOX_CONTROLLER = new CommandXboxController(0);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -80,7 +82,7 @@ public class RobotContainer {
 
     // Configure default commands
     
-    m_robotDrive.setDefaultCommand(
+   m_robotDrive.setDefaultCommand(
         // The left stick controls translation of the robot.
         // Turning is controlled by the X axis of the right stick.
         
@@ -92,7 +94,7 @@ public class RobotContainer {
                 -MathUtil.applyDeadband(m_driverController.getRightX(), .05),
               false, true),
             m_robotDrive));
-            
+        
          
 
   }
@@ -112,11 +114,23 @@ public class RobotContainer {
         .whileTrue(new RunCommand(
             () -> m_robotDrive.setX(),
             m_robotDrive));
-           
+        
     
-    //XBOX_CONTROLLER.a().whileTrue(test);
+    //Constants.XBOX_CONTROLLER.a().whileTrue(test);
+    //Constants.XBOX_CONTROLLER.b().whileTrue(neoTest);
 
-    //XBOX_CONTROLLER.b().whileTrue(neoTest);
+    /*Possible controller modes
+    
+     * 
+     */
+    /*Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new OutakeCommand(m_shooter));
+    Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new intakeCommand(m_shooter));
+    Constants.XBOX_CONTROLLER.a().onTrue(new ShooterPistonCommand(m_shooter));
+    Constants.XBOX_CONTROLLER.x().onTrue(new AmpAngleCommand(m_shooter));
+    Constants.XBOX_CONTROLLER.y().onTrue(new IntakeAngleCommand(m_shooter));
+    Constants.XBOX_CONTROLLER.b().onTrue(new SpeakerAngleCommand(m_shooter));
+*/
+
     
             
 
@@ -130,31 +144,55 @@ public class RobotContainer {
   
    public Command getAutonomousCommand() {
     // Create config for trajectory
-     return null;
      
    
-   /*  TrajectoryConfig config = new TrajectoryConfig(
+   /*TrajectoryConfig config = new TrajectoryConfig(
         kMaxSpeedMetersPerSecond,
         kMaxAccelerationMetersPerSecondSquared)
         // Add kinematics to ensure max speed is actually obeyed
         .setKinematics(kDriveKinematics);
 
     // An example trajectory to follow. All units in meters.
-    Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+    Trajectory ExitCommunityTrajectory = TrajectoryGenerator.generateTrajectory(
         // Start at the origin facing the +X direction
         new Pose2d(0, 0, new Rotation2d(0)),
         // Pass through these two interior waypoints, making an 's' curve path
-        List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
+        //List.of(new Translation2d(-1, 1), new Translation2d(-2, -1)),
+        //pass through with straight path
+        List.of(new Translation2d(-1, 0)),
         // End 3 meters straight ahead of where we started, facing forward
-        new Pose2d(3, 0, new Rotation2d(0)),
+        new Pose2d(-3, 0, new Rotation2d(0)),
+        config);
+    
+        Trajectory EnterCommunityTrajectory = TrajectoryGenerator.generateTrajectory(
+        // Start at the origin facing the +X direction
+        new Pose2d(-3, 0, new Rotation2d(0)),
+        // Pass through these two interior waypoints, making an 's' curve path
+        //List.of(new Translation2d(-2, 1), new Translation2d(-1, -1)),
+        //pass through with straight path
+        List.of(new Translation2d(-1, 0)),
+        // End 3 meters straight ahead of where we started, facing forward
+        new Pose2d(0, 0, new Rotation2d(0)),
         config);
 
     var thetaController = new ProfiledPIDController(
         kPThetaController, 0, 0, kThetaControllerConstraints);
     thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
-    SwerveControllerCommand swerveControllerCommand = new SwerveControllerCommand(
-        exampleTrajectory,
+    SwerveControllerCommand swerveControllerExitCommunityCommand = new SwerveControllerCommand(
+        ExitCommunityTrajectory,
+        m_robotDrive::getPose, // Functional interface to feed supplier
+        kDriveKinematics,
+
+        // Position controllers
+        new PIDController(kPXController, 0, 0),
+        new PIDController(kPYController, 0, 0),
+        thetaController,
+        m_robotDrive::setModuleStates,
+        m_robotDrive);
+    
+    SwerveControllerCommand swerveControllerEnterCommunityCommand = new SwerveControllerCommand(
+      EnterCommunityTrajectory,
         m_robotDrive::getPose, // Functional interface to feed supplier
         kDriveKinematics,
 
@@ -166,12 +204,15 @@ public class RobotContainer {
         m_robotDrive);
 
     // Reset odometry to the starting pose of the trajectory.
-    m_robotDrive.resetOdometry(exampleTrajectory.getInitialPose());
+    m_robotDrive.resetOdometry(EnterCommunityTrajectory.getInitialPose());
 
     // Run path following command, then stop at the end.
-    return swerveControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false, false));
-
+    //return swerveControllerExitCommunityCommand.andThen(swerveControllerEnterCommunityCommand).andThen(autoShoot).andThen(() -> m_robotDrive.drive(0, 0, 0, false, false));
     */
+    
+    return null;
+    
+    
 
 
   

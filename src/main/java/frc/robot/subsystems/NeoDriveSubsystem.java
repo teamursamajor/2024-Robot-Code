@@ -31,12 +31,12 @@ public class NeoDriveSubsystem extends SubsystemBase {
         new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
     
     public int kFrontLeftDrivingCanId = 1;
-    public int kRearLeftDrivingCanId = 4;
+    public int kRearLeftDrivingCanId = 3;
     public int kFrontRightDrivingCanId = 7;
     public int kRearRightDrivingCanId = 5;
 
     public int kFrontLeftTurningCanId = 2;
-    public int kRearLeftTurningCanId = 3;
+    public int kRearLeftTurningCanId = 4;
     public int kFrontRightTurningCanId = 8;
     public int kRearRightTurningCanId = 6;
 

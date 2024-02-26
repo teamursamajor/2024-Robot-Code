@@ -40,8 +40,6 @@ public class OutakeCommand extends Command{
   @Override
   public void execute() {
     shooter_subsystem.setMotor(speed);
-    //once  motor is up to speed 
-    shooter_subsystem.setShooterSol(true);
     
   }
 
@@ -49,7 +47,6 @@ public class OutakeCommand extends Command{
   @Override
   public void end(boolean interrupted) {
     shooter_subsystem.setMotor(0.0);
-    shooter_subsystem.setShooterSol(false);
   }
 
   // Returns true when the command should end.

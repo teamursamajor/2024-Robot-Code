@@ -212,6 +212,14 @@ public class MAXSwerveModule {
     public double getNeoSpeed(){
       return m_turningSparkMax.getBusVoltage();
     }
+
+    public double getPos(){
+      return m_turningEncoder.getPosition();
+    }
+
+    public double getPosWithOffset(){
+      return m_turningEncoder.getPosition() - m_chassisAngularOffset;
+    }
     
 
     

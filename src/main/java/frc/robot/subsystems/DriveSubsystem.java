@@ -22,14 +22,14 @@ public class DriveSubsystem extends SubsystemBase {
   
   // put in all the ids and device numbers
   private final int kFrontLeftDrivingTalonId = 1;
-  private final int kFrontRightDrivingTalonId = 5;
+  private final int kFrontRightDrivingTalonId = 2;
   private final int kBackRightDrivingTalonId = 3;
   private final int kBackLeftDrivingTalonId = 4;
 
   private final int kFrontLeftTurningId = 2;
-  private final int kFrontRightTurningId = 6;
-  private final int kBackLeftTurningId = 7;
-  private final int kBackRightTurningId = 8;
+  private final int kFrontRightTurningId = 8;
+  private final int kBackLeftTurningId = 4;
+  private final int kBackRightTurningId = 6;
 
   public static final double kDirectionSlewRate = 1.2; // radians per second
   public static final double kMaxSpeedMetersPerSecond = 4.8;
@@ -235,9 +235,12 @@ public class DriveSubsystem extends SubsystemBase {
   SmartDashboard.putNumber("Frontleft Speed", swerveModuleStates[0].speedMetersPerSecond);
   SmartDashboard.putNumber("Frontleft Angle", swerveModuleStates[0].angle.getDegrees());
   
-  /*SmartDashboard.putNumber("FrontRight Speed", swerveModuleStates[1].speedMetersPerSecond);
-  SmartDashboard.putNumber("FrontRight Angle", swerveModuleStates[1].angle.getDegrees());
-  SmartDashboard.putNumber("Rearleft Speed", swerveModuleStates[2].speedMetersPerSecond);
+  SmartDashboard.putNumber("Frontleft Positon", m_frontLeft.getPos());
+
+  //SmartDashboard.putNumber("FrontRight Speed", swerveModuleStates[1].speedMetersPerSecond);
+  //SmartDashboard.putNumber("FrontRight Angle", swerveModuleStates[1].angle.getDegrees());
+  
+  /*SmartDashboard.putNumber("Rearleft Speed", swerveModuleStates[2].speedMetersPerSecond);
   SmartDashboard.putNumber("Rearleft Angle", swerveModuleStates[2].angle.getDegrees());
   SmartDashboard.putNumber("RearRight Speed", swerveModuleStates[3].speedMetersPerSecond);
   SmartDashboard.putNumber("RearRight Angle", swerveModuleStates[3].angle.getDegrees());

@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class FalconMotor extends SubsystemBase{
     
-    private int id = 1;
+    private int id = 2;
     TalonFX driveMotor = new TalonFX(id);
 
     public void drive(){
