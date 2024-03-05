@@ -20,16 +20,16 @@ import frc.utils.SwerveUtils;
 
 public class DriveSubsystem extends SubsystemBase {
   
-  // put in all the ids and device numbers
-  private final int kFrontLeftDrivingTalonId = 1;
-  private final int kFrontRightDrivingTalonId = 2;
-  private final int kBackRightDrivingTalonId = 3;
-  private final int kBackLeftDrivingTalonId = 4;
 
-  private final int kFrontLeftTurningId = 2;
-  private final int kFrontRightTurningId = 8;
-  private final int kBackLeftTurningId = 4;
-  private final int kBackRightTurningId = 6;
+  private final int kBackRightDrivingTalonId = 2;
+  private final int kFrontRightDrivingTalonId = 4;
+  private final int kFrontLeftDrivingTalonId = 1;
+  private final int kBackLeftDrivingTalonId = 3;
+
+  private final int kFrontLeftTurningId = 7;
+  private final int kFrontRightTurningId = 3;
+  private final int kBackLeftTurningId = 5;
+  private final int kBackRightTurningId = 1;
 
   public static final double kDirectionSlewRate = 1.2; // radians per second
   public static final double kMaxSpeedMetersPerSecond = 4.8;
@@ -37,10 +37,10 @@ public class DriveSubsystem extends SubsystemBase {
   public static final boolean kGyroReversed = false;
 
   // Distance between front and back wheels on robot
-  public static final double kWheelBase = Units.inchesToMeters(28.0); 
+  public static final double kWheelBase = Units.inchesToMeters(26.0); 
 
   // Distance between centers of right and left wheels on robot
-  public static final double kTrackWidth = Units.inchesToMeters(27.5); 
+  public static final double kTrackWidth = Units.inchesToMeters(33.5); 
   
   public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
         new Translation2d(kWheelBase / 2, kTrackWidth / 2),
@@ -68,6 +68,8 @@ public class DriveSubsystem extends SubsystemBase {
       kBackRightDrivingTalonId,
       kBackRightTurningId,
       (Math.PI / 2));
+
+  
     
 
   // The gyro sensor
@@ -96,6 +98,8 @@ public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
   
   public DriveSubsystem() {
+    //m_frontLeft.invertTalon();
+    //m_rearLeft.invertTalon();
   }
 
   @Override
@@ -153,10 +157,14 @@ public class DriveSubsystem extends SubsystemBase {
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative, boolean rateLimit) {
     
     System.out.println("Swerve Drive");
-    if(Math.abs(xSpeed) < .05 && Math.abs(ySpeed) < .05 && Math.abs(rot) < .05){
-      xSpeed = 0;
-      ySpeed = 0;
-      rot = 0;
+    if(Math.abs(xSpeed) < .1){
+      xSpeed = 0.0;
+    }
+    if(Math.abs(ySpeed)< .1){
+      ySpeed = 0.0;
+    }
+    if(Math.abs(rot) < .1){
+      rot = 0.0;
     }
 
     double xSpeedCommanded;

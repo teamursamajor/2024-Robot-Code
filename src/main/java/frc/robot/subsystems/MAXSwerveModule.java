@@ -193,6 +193,10 @@ public class MAXSwerveModule {
        SmartDashboard.putNumber("DriveCurrent", m_drivingTalonFX.getStatorCurrent().getValueAsDouble());
     }
 
+    public void invertTalon(){
+      m_drivingTalonFX.setInverted(true);
+    }
+
     public void getRotationalCurrent () {
       SmartDashboard.putNumber("Turning Current", m_turningSparkMax.getOutputCurrent());
     }

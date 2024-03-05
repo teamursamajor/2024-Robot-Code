@@ -31,6 +31,9 @@ public final class Constants {
   public static ShuffleboardTab debugTab = Shuffleboard.getTab("Debug");
   public static double ampAngle = 30.0;
   public static double speakerAngle = 70.0;
-  public static double intakeAngle = 50.0; //good angle
+  public static double intakeAngle = 50.0;
+  public static double intakeSpeed = -1.0;
+  public static double speakerSpeed = 1.0;
+  public static double ampSpeed = .25;
 
 }

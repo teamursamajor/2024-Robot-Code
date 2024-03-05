@@ -1,18 +1,14 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class ShooterPistonCommand extends Command{
+public class TestIncreaseAngle extends Command{
      @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ShooterSubsystem shooter_subsystem;
-  boolean isFinished = false;
-
 
   
-  public ShooterPistonCommand(ShooterSubsystem subsystem) {
+  public TestIncreaseAngle(ShooterSubsystem subsystem) {
     shooter_subsystem = subsystem;
     addRequirements(subsystem);
   }
@@ -21,27 +17,19 @@ public class ShooterPistonCommand extends Command{
   @Override
   public void initialize() {
     
-    
 }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter_subsystem.toggleShooterSol();
-    isFinished = true;
+   shooter_subsystem.increaseAngle();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    /*Timer.delay(.25);
-    shooter_subsystem.toggleShooterSol();
-    */
+    shooter_subsystem.stopAngle();
   }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return isFinished;
-  }
+  
 }

@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class ClimbSubsystem extends SubsystemBase{
 
     //Fill in port numbers
-    private Spark leftMotor = new Spark(0);
-    private Spark rightMotor = new Spark (1);
+    private Spark leftMotor = new Spark(1);
+    private Spark rightMotor = new Spark (3);
     
     //PUT IN BRAKE MODE
     //Press and release the MODE button to toggle between brake and coast mode. When in Brake Mode (default), the Status

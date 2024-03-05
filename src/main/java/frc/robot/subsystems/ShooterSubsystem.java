@@ -22,11 +22,11 @@ public class ShooterSubsystem extends SubsystemBase{
     public double maxShooterAngle;
   
     //TalonFX shooterMotor = new TalonFX(0);
-    CANSparkMax shooterMotor1 = new CANSparkMax(11, MotorType.kBrushless);
-    CANSparkMax shooterMotor2 = new CANSparkMax(12, MotorType.kBrushless);
+    CANSparkMax shooterMotor1 = new CANSparkMax(6, MotorType.kBrushless);
+    CANSparkMax shooterMotor2 = new CANSparkMax(4, MotorType.kBrushless);
 
     //TalonFX adjustableAngleMotor = new TalonFX(1);
-    Spark adjustableAngleMotor = new Spark(1);
+    Spark adjustableAngleMotor = new Spark(2);
 
     DoubleSolenoid notePusher = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 15);
     // Initializes an AnalogPotentiometer on analog port 0
@@ -43,17 +43,18 @@ public class ShooterSubsystem extends SubsystemBase{
 
 
     public void increaseAngle(){
-        adjustableAngleMotor.set(.5);
+        adjustableAngleMotor.set(.15);
     }
 
     public void decreaseAngle(){
-        adjustableAngleMotor.set(-.5);
+        adjustableAngleMotor.set(-.15);
     }
 
     public void setMotor(double speed){
         shooterMotor1.set(speed);
         shooterMotor2.set(-speed);
-    }
+        System.out.println( shooterMotor2.get());
+          }
 
     public double getSpeed(){
         return shooterMotor1.getEncoder().getVelocity();

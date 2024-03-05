@@ -9,13 +9,7 @@ import frc.robot.Constants;
 public class OutakeCommand extends Command{
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ShooterSubsystem shooter_subsystem;
-  boolean isFinished = false;
   double speed;
-  double speakerSpeed = .7;
-  double ampSpeed = .3;
-
-
-
   
   public OutakeCommand(ShooterSubsystem subsystem) {
     shooter_subsystem = subsystem;
@@ -25,10 +19,11 @@ public class OutakeCommand extends Command{
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    shooter_subsystem.setShooterSol(false);
     if(shooter_subsystem.getShooterAngle() <= Constants.ampAngle-2 && shooter_subsystem.getShooterAngle() <= Constants.ampAngle+2){
-      speed = ampSpeed;
+      speed = Constants.ampSpeed;
     }else if (shooter_subsystem.getShooterAngle() <= Constants.speakerAngle-2 && shooter_subsystem.getShooterAngle() <= Constants.speakerAngle+2){
-      speed = speakerSpeed;
+      speed = Constants.speakerSpeed;
     }else{
       speed = .5;
     }
@@ -40,18 +35,20 @@ public class OutakeCommand extends Command{
   @Override
   public void execute() {
     shooter_subsystem.setMotor(speed);
-    
+    Timer.delay(1);
+    shooter_subsystem.setShooterSol(true);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    shooter_subsystem.setShooterSol(false);
     shooter_subsystem.setMotor(0.0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return isFinished;
+    return false;
   }
 }

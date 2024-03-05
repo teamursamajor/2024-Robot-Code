@@ -26,6 +26,9 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
+import static frc.robot.Constants.XBOX_CONTROLLER;
+
 import java.util.List;
 
 /*
@@ -114,12 +117,15 @@ public class RobotContainer {
         .whileTrue(new RunCommand(
             () -> m_robotDrive.setX(),
             m_robotDrive));
+            
         
-    
-    //Constants.XBOX_CONTROLLER.a().whileTrue(test);
-    //Constants.XBOX_CONTROLLER.b().whileTrue(neoTest);
+    //test comamnds
+    //Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new TestIntake(m_shooter));
+    //Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new TestOutake(m_shooter));
+    //Constants.XBOX_CONTROLLER.rightBumper().whileTrue(new TestDecreaseAngle(m_shooter));
+    //Constants.XBOX_CONTROLLER.leftBumper().whileTrue(new TestIncreaseAngle(m_shooter));
 
-    /*Possible controller modes
+    /*Possible actual controller modes
     
      * 
      */
@@ -144,9 +150,9 @@ public class RobotContainer {
   
    public Command getAutonomousCommand() {
     // Create config for trajectory
-     
+     //return null;
    
-   /*TrajectoryConfig config = new TrajectoryConfig(
+   TrajectoryConfig config = new TrajectoryConfig(
         kMaxSpeedMetersPerSecond,
         kMaxAccelerationMetersPerSecondSquared)
         // Add kinematics to ensure max speed is actually obeyed
@@ -159,21 +165,16 @@ public class RobotContainer {
         // Pass through these two interior waypoints, making an 's' curve path
         //List.of(new Translation2d(-1, 1), new Translation2d(-2, -1)),
         //pass through with straight path
-        List.of(new Translation2d(-1, 0)),
+        
+        //List.of(new Translation2d(-2.156, -1.448)),
+        List.of(new Translation2d(0, -2)),
         // End 3 meters straight ahead of where we started, facing forward
-        new Pose2d(-3, 0, new Rotation2d(0)),
+        //new Pose2d(-6, -1.448, new Rotation2d(0)),
+        new Pose2d(0, -3, new Rotation2d(0)),
         config);
     
-        Trajectory EnterCommunityTrajectory = TrajectoryGenerator.generateTrajectory(
-        // Start at the origin facing the +X direction
-        new Pose2d(-3, 0, new Rotation2d(0)),
-        // Pass through these two interior waypoints, making an 's' curve path
-        //List.of(new Translation2d(-2, 1), new Translation2d(-1, -1)),
-        //pass through with straight path
-        List.of(new Translation2d(-1, 0)),
-        // End 3 meters straight ahead of where we started, facing forward
-        new Pose2d(0, 0, new Rotation2d(0)),
-        config);
+    
+      
 
     var thetaController = new ProfiledPIDController(
         kPThetaController, 0, 0, kThetaControllerConstraints);
@@ -191,30 +192,18 @@ public class RobotContainer {
         m_robotDrive::setModuleStates,
         m_robotDrive);
     
-    SwerveControllerCommand swerveControllerEnterCommunityCommand = new SwerveControllerCommand(
-      EnterCommunityTrajectory,
-        m_robotDrive::getPose, // Functional interface to feed supplier
-        kDriveKinematics,
-
-        // Position controllers
-        new PIDController(kPXController, 0, 0),
-        new PIDController(kPYController, 0, 0),
-        thetaController,
-        m_robotDrive::setModuleStates,
-        m_robotDrive);
+  
 
     // Reset odometry to the starting pose of the trajectory.
-    m_robotDrive.resetOdometry(EnterCommunityTrajectory.getInitialPose());
+    m_robotDrive.resetOdometry(ExitCommunityTrajectory.getInitialPose());
 
     // Run path following command, then stop at the end.
-    //return swerveControllerExitCommunityCommand.andThen(swerveControllerEnterCommunityCommand).andThen(autoShoot).andThen(() -> m_robotDrive.drive(0, 0, 0, false, false));
-    */
-    
-    return null;
-    
-    
+    //Shoot and leave from postion 1  
+    //return autoShoot.andThen(swerveControllerExitCommunityCommand).andThen(() -> m_robotDrive.drive(0, 0, 0, false, false));
+    //leave from position 1
+    //return swerveControllerExitCommunityCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false, false));
+    return new LeaveLeftCommand(m_robotDrive);
 
+   }
 
-  
-  }
 }
