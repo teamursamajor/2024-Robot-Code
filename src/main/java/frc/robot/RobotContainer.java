@@ -52,16 +52,18 @@ public class RobotContainer {
   public final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
   
   
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
-
-  //private final ShooterSubsystem m_shooter = new ShooterSubsystem();
+  //private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final ShooterSubsystem m_shooter = new ShooterSubsystem();
   //public final ClimbSubsystem m_climb = new ClimbSubsystem();
   //public final AutoSpeakerCommand autoShoot = new AutoSpeakerCommand(m_shooter);
+  //private final AprilTagSubsystem m_april = new AprilTagSubsystem();
 
   //public final FalconMotor falcon = new FalconMotor();
   //public final NeoMotor neo = new NeoMotor();
   //private TestDriveCommand test = new TestDriveCommand(falcon);
   //private TurnMotorTest neoTest = new TurnMotorTest(neo);
+  //private TestAprilTag testApril = new TestAprilTag(m_april);
+  
   
 
 
@@ -85,7 +87,7 @@ public class RobotContainer {
 
     // Configure default commands
     
-   m_robotDrive.setDefaultCommand(
+   /*m_robotDrive.setDefaultCommand(
         // The left stick controls translation of the robot.
         // Turning is controlled by the X axis of the right stick.
         
@@ -97,7 +99,7 @@ public class RobotContainer {
                 -MathUtil.applyDeadband(m_driverController.getRightX(), .05),
               false, true),
             m_robotDrive));
-        
+        */
          
 
   }
@@ -113,18 +115,18 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     
-    new JoystickButton(m_driverController, Button.kR1.value)
+    /*new JoystickButton(m_driverController, Button.kR1.value)
         .whileTrue(new RunCommand(
             () -> m_robotDrive.setX(),
             m_robotDrive));
-            
+      */     
         
     //test comamnds
-    //Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new TestIntake(m_shooter));
-    //Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new TestOutake(m_shooter));
-    //Constants.XBOX_CONTROLLER.rightBumper().whileTrue(new TestDecreaseAngle(m_shooter));
-    //Constants.XBOX_CONTROLLER.leftBumper().whileTrue(new TestIncreaseAngle(m_shooter));
-
+    Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new TestIntake(m_shooter));
+    Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new TestOutake(m_shooter));
+    Constants.XBOX_CONTROLLER.rightBumper().whileTrue(new TestDecreaseAngle(m_shooter));
+    Constants.XBOX_CONTROLLER.leftBumper().whileTrue(new TestIncreaseAngle(m_shooter));
+    Constants.XBOX_CONTROLLER.a().onTrue(new ShooterPistonCommand(m_shooter));
     /*Possible actual controller modes
     
      * 
@@ -135,7 +137,10 @@ public class RobotContainer {
     Constants.XBOX_CONTROLLER.x().onTrue(new AmpAngleCommand(m_shooter));
     Constants.XBOX_CONTROLLER.y().onTrue(new IntakeAngleCommand(m_shooter));
     Constants.XBOX_CONTROLLER.b().onTrue(new SpeakerAngleCommand(m_shooter));
+
 */
+    //Constants.XBOX_CONTROLLER.a().whileTrue(testApril);
+
 
     
             
@@ -150,9 +155,9 @@ public class RobotContainer {
   
    public Command getAutonomousCommand() {
     // Create config for trajectory
-     //return null;
-   
-   TrajectoryConfig config = new TrajectoryConfig(
+    return null;
+    
+   /*TrajectoryConfig config = new TrajectoryConfig(
         kMaxSpeedMetersPerSecond,
         kMaxAccelerationMetersPerSecondSquared)
         // Add kinematics to ensure max speed is actually obeyed
@@ -197,13 +202,14 @@ public class RobotContainer {
     // Reset odometry to the starting pose of the trajectory.
     m_robotDrive.resetOdometry(ExitCommunityTrajectory.getInitialPose());
 
+
     // Run path following command, then stop at the end.
     //Shoot and leave from postion 1  
     //return autoShoot.andThen(swerveControllerExitCommunityCommand).andThen(() -> m_robotDrive.drive(0, 0, 0, false, false));
     //leave from position 1
     //return swerveControllerExitCommunityCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false, false));
     return new LeaveLeftCommand(m_robotDrive);
-
+    */
    }
 
 }

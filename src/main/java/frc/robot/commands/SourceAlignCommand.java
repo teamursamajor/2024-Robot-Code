@@ -30,6 +30,7 @@ public class SourceAlignCommand extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        
         if (aprilTag_Subsystem.getAprilTagId() != 1 && aprilTag_Subsystem.getAprilTagId() != 10 ) {
             isFinished = true;
         } else if (aprilTag_Subsystem.getYawResult() == Double.MAX_VALUE) {
@@ -38,11 +39,11 @@ public class SourceAlignCommand extends Command {
             driveSubsystem.drive(0.0, 0.5, 0, false, false);
         } else if (aprilTag_Subsystem.getYawResult() > 0 + marginError) {
             driveSubsystem.drive(0.0, -.5, 0, false, false);
-        } else if (aprilTag_Subsystem.getDistanceToTarget() == Double.MAX_VALUE) {
+        } else if (aprilTag_Subsystem.getDistanceToSource() == Double.MAX_VALUE) {
             isFinished = true;
-        } else if (aprilTag_Subsystem.getDistanceToTarget() < desiredRange - distanceMargineError) {
+        } else if (aprilTag_Subsystem.getDistanceToSource() < desiredRange - distanceMargineError) {
             driveSubsystem.drive(-.5, 0, 0, false, false);
-        } else if (aprilTag_Subsystem.getDistanceToTarget() > desiredRange + distanceMargineError) {
+        } else if (aprilTag_Subsystem.getDistanceToSource() > desiredRange + distanceMargineError) {
             driveSubsystem.drive(.5, 0, 0, false, false);
         } else {
             isFinished = true;

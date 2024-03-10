@@ -6,6 +6,7 @@ package frc.robot;
 
 import org.photonvision.PhotonCamera;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -22,8 +23,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
-
-  Thread m_visionThread;
+  
+  
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -34,6 +35,9 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    
+    //CameraServer.startAutomaticCapture();
+
     
     
     

@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkBase.IdleMode;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.ADIS16470_IMU.IMUAxis;
@@ -23,19 +24,22 @@ public class ShooterSubsystem extends SubsystemBase{
   
     //TalonFX shooterMotor = new TalonFX(0);
     CANSparkMax shooterMotor1 = new CANSparkMax(6, MotorType.kBrushless);
-    CANSparkMax shooterMotor2 = new CANSparkMax(4, MotorType.kBrushless);
+    CANSparkMax shooterMotor2 = new CANSparkMax(8, MotorType.kBrushless);
 
     //TalonFX adjustableAngleMotor = new TalonFX(1);
-    Spark adjustableAngleMotor = new Spark(2);
+    Spark adjustableAngleMotor = new Spark(0);
 
-    DoubleSolenoid notePusher = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 15);
+    DoubleSolenoid notePusher = new DoubleSolenoid(PneumaticsModuleType.REVPH, 1, 0);
+    Compressor comp = new Compressor(1, PneumaticsModuleType.REVPH);
+
     // Initializes an AnalogPotentiometer on analog port 0
 // The full range of motion (in meaningful external units) is 0-180 (this could be degrees, for instance)
 // The "starting point" of the motion, i.e. where the mechanism is located when the potentiometer reads 0v, is 30.
-    AnalogPotentiometer angleReader = new AnalogPotentiometer(0, 180, 30);
+    AnalogPotentiometer angleReader = new AnalogPotentiometer(1, 180, 30);
 
     public ShooterSubsystem(){
         setShooterSol(false);
+        comp.enableDigital();
         shooterMotor1.setIdleMode(IdleMode.kCoast);
         shooterMotor2.setIdleMode(IdleMode.kCoast);
     }
@@ -43,18 +47,18 @@ public class ShooterSubsystem extends SubsystemBase{
 
 
     public void increaseAngle(){
-        adjustableAngleMotor.set(.15);
+        adjustableAngleMotor.set(.35);
     }
 
     public void decreaseAngle(){
-        adjustableAngleMotor.set(-.15);
+        adjustableAngleMotor.set(-.25);
     }
 
     public void setMotor(double speed){
         shooterMotor1.set(speed);
         shooterMotor2.set(-speed);
-        System.out.println( shooterMotor2.get());
-          }
+        //System.out.println( shooterMotor2.get());
+        }
 
     public double getSpeed(){
         return shooterMotor1.getEncoder().getVelocity();

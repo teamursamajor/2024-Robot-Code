@@ -32,15 +32,15 @@ public class SpeakerAlignCommand extends Command {
         } else if (aprilTag_Subsystem.getYawResult() == Double.MAX_VALUE) {
             isFinished = true;
         } else if (aprilTag_Subsystem.getYawResult() < 0 - yawMarginError) {
-            driveSubsystem.drive(0.0, 0.5, 0, false, false);
+            driveSubsystem.drive(0.0, 0.25, 0, false, false);
         } else if (aprilTag_Subsystem.getYawResult() > 0 + yawMarginError) {
-            driveSubsystem.drive(0.0, -.5, 0, false, false);
-        } else if (aprilTag_Subsystem.getDistanceToTarget() == Double.MAX_VALUE) {
+            driveSubsystem.drive(0.0, -.25, 0, false, false);
+        } else if (aprilTag_Subsystem.getDistanceToSpeaker() == Double.MAX_VALUE) {
             isFinished = true;
-        } else if (aprilTag_Subsystem.getDistanceToTarget() < desiredRange - distanceMargineError) {
-            driveSubsystem.drive(.5, 0, 0, false, false);
-        } else if (aprilTag_Subsystem.getDistanceToTarget() > desiredRange + distanceMargineError) {
-            driveSubsystem.drive(-.5, -0.0, 0, false, false);
+        } else if (aprilTag_Subsystem.getDistanceToSpeaker() < desiredRange - distanceMargineError) {
+            driveSubsystem.drive(.25, 0, 0, false, false);
+        } else if (aprilTag_Subsystem.getDistanceToSpeaker() > desiredRange + distanceMargineError) {
+            driveSubsystem.drive(-.25, 0.0, 0, false, false);
         } else {
             isFinished = true;
         }
