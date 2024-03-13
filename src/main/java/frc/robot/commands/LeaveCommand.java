@@ -41,7 +41,7 @@ public class LeaveCommand extends Command{
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    
+    drive.drive(0, 0, 0, false, false);
   }
 
   // Returns true when the command should end.

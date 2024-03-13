@@ -26,10 +26,10 @@ public class DriveSubsystem extends SubsystemBase {
   private final int kFrontLeftDrivingTalonId = 1;
   private final int kBackLeftDrivingTalonId = 3;
 
-  private final int kFrontLeftTurningId = 7;
-  private final int kFrontRightTurningId = 3;
-  private final int kBackLeftTurningId = 5;
-  private final int kBackRightTurningId = 1;
+  private final int kFrontLeftTurningId = 4;
+  private final int kFrontRightTurningId = 7;
+  private final int kBackLeftTurningId = 1;
+  private final int kBackRightTurningId = 3;
 
   public static final double kDirectionSlewRate = 1.2; // radians per second
   public static final double kMaxSpeedMetersPerSecond = 4.8;

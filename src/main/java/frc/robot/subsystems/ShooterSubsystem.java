@@ -31,7 +31,7 @@ public class ShooterSubsystem extends SubsystemBase{
 
     DoubleSolenoid notePusher = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 15);
     Compressor comp = new Compressor(1, PneumaticsModuleType.REVPH);
-
+   
     // Initializes an AnalogPotentiometer on analog port 0
 // The full range of motion (in meaningful external units) is 0-180 (this could be degrees, for instance)
 // The "starting point" of the motion, i.e. where the mechanism is located when the potentiometer reads 0v, is 0.

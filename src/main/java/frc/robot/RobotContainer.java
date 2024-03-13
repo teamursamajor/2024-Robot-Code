@@ -52,11 +52,11 @@ public class RobotContainer {
   public final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
   
   
-  //private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final ShooterSubsystem m_shooter = new ShooterSubsystem();
-  //public final ClimbSubsystem m_climb = new ClimbSubsystem();
-  //public final AutoSpeakerCommand autoShoot = new AutoSpeakerCommand(m_shooter);
-  //private final AprilTagSubsystem m_april = new AprilTagSubsystem();
+  public final ClimbSubsystem m_climb = new ClimbSubsystem();
+  public final AutoSpeakerCommand autoShoot = new AutoSpeakerCommand(m_shooter);
+  private final AprilTagSubsystem m_april = new AprilTagSubsystem();
 
   //public final FalconMotor falcon = new FalconMotor();
   //public final NeoMotor neo = new NeoMotor();
@@ -87,7 +87,7 @@ public class RobotContainer {
 
     // Configure default commands
     
-   /*m_robotDrive.setDefaultCommand(
+   m_robotDrive.setDefaultCommand(
         // The left stick controls translation of the robot.
         // Turning is controlled by the X axis of the right stick.
         
@@ -99,7 +99,7 @@ public class RobotContainer {
                 -MathUtil.applyDeadband(m_driverController.getRightX(), .05),
               false, true),
             m_robotDrive));
-        */
+      
          
 
   }
@@ -115,11 +115,11 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     
-    /*new JoystickButton(m_driverController, Button.kR1.value)
+  new JoystickButton(m_driverController, Button.kR1.value)
         .whileTrue(new RunCommand(
             () -> m_robotDrive.setX(),
             m_robotDrive));
-      */     
+       
         
     //test comamnds
     Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new TestIntake(m_shooter));
