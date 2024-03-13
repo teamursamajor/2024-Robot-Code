@@ -45,7 +45,7 @@ public class AutoSpeakerCommand extends Command {
       speedGood = true;
     }
   }else{
-    shooter_subsystem.setShooterSol(true);
+    shooter_subsystem.setShooterSol(false);
     isFinished = true;
   }
 
@@ -59,7 +59,7 @@ public class AutoSpeakerCommand extends Command {
   @Override
   public void end(boolean interrupted) {
     Timer.delay(1.5);
-    shooter_subsystem.setShooterSol(false);
+    shooter_subsystem.setShooterSol(true);
     shooter_subsystem.setMotor(0.0);
 
   }

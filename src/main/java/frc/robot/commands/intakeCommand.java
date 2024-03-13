@@ -19,7 +19,7 @@ public class intakeCommand extends Command{
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooter_subsystem.setShooterSol(false);
+    shooter_subsystem.setShooterSol(true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

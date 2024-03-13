@@ -29,16 +29,16 @@ public class ShooterSubsystem extends SubsystemBase{
     //TalonFX adjustableAngleMotor = new TalonFX(1);
     Spark adjustableAngleMotor = new Spark(0);
 
-    DoubleSolenoid notePusher = new DoubleSolenoid(PneumaticsModuleType.REVPH, 1, 0);
+    DoubleSolenoid notePusher = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 15);
     Compressor comp = new Compressor(1, PneumaticsModuleType.REVPH);
 
     // Initializes an AnalogPotentiometer on analog port 0
 // The full range of motion (in meaningful external units) is 0-180 (this could be degrees, for instance)
-// The "starting point" of the motion, i.e. where the mechanism is located when the potentiometer reads 0v, is 30.
-    AnalogPotentiometer angleReader = new AnalogPotentiometer(1, 180, 30);
+// The "starting point" of the motion, i.e. where the mechanism is located when the potentiometer reads 0v, is 0.
+    AnalogPotentiometer angleReader = new AnalogPotentiometer(0, 180, 0);
 
     public ShooterSubsystem(){
-        setShooterSol(false);
+        setShooterSol(true);
         comp.enableDigital();
         shooterMotor1.setIdleMode(IdleMode.kCoast);
         shooterMotor2.setIdleMode(IdleMode.kCoast);

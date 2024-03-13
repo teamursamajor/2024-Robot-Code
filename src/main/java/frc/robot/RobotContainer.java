@@ -127,6 +127,7 @@ public class RobotContainer {
     Constants.XBOX_CONTROLLER.rightBumper().whileTrue(new TestDecreaseAngle(m_shooter));
     Constants.XBOX_CONTROLLER.leftBumper().whileTrue(new TestIncreaseAngle(m_shooter));
     Constants.XBOX_CONTROLLER.a().onTrue(new ShooterPistonCommand(m_shooter));
+    Constants.XBOX_CONTROLLER.b().whileTrue(new TestAngleReader(m_shooter));
     /*Possible actual controller modes
     
      * 

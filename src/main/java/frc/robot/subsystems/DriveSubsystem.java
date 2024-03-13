@@ -156,7 +156,7 @@ public class DriveSubsystem extends SubsystemBase {
    
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative, boolean rateLimit) {
     
-    System.out.println("Swerve Drive");
+    //System.out.println("Swerve Drive");
     if(Math.abs(xSpeed) < .1){
       xSpeed = 0.0;
     }
@@ -169,8 +169,8 @@ public class DriveSubsystem extends SubsystemBase {
 
     double xSpeedCommanded;
     double ySpeedCommanded;
-    System.out.println("xSpeed" + xSpeed);
-    System.out.println("ySpeed" + ySpeed);
+    //System.out.println("xSpeed" + xSpeed);
+    //System.out.println("ySpeed" + ySpeed);
 
 
     if (rateLimit) {
@@ -254,11 +254,11 @@ public class DriveSubsystem extends SubsystemBase {
   SmartDashboard.putNumber("RearRight Angle", swerveModuleStates[3].angle.getDegrees());
 */
 
-  System.out.println("falcon motor set "+ swerveModuleStates[0].speedMetersPerSecond);
-  System.out.println("neo motor set "+ swerveModuleStates[0].angle.getDegrees());
-  System.out.println("Falcon motor set to "+ m_frontLeft.getFalconSetSpeed());
-  System.out.println("falcon motor volts "+m_frontLeft.getFalconSpeed());
-  System.out.println("neo motor volts "+ m_frontLeft.getNeoSpeed());
+  //System.out.println("falcon motor set "+ swerveModuleStates[0].speedMetersPerSecond);
+  //System.out.println("neo motor set "+ swerveModuleStates[0].angle.getDegrees());
+  //System.out.println("Falcon motor set to "+ m_frontLeft.getFalconSetSpeed());
+  //System.out.println("falcon motor volts "+m_frontLeft.getFalconSpeed());
+  //System.out.println("neo motor volts "+ m_frontLeft.getNeoSpeed());
   
   
 

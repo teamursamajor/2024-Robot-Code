@@ -19,7 +19,7 @@ public class OutakeCommand extends Command{
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooter_subsystem.setShooterSol(false);
+    shooter_subsystem.setShooterSol(true);
     if(shooter_subsystem.getShooterAngle() <= Constants.ampAngle-2 && shooter_subsystem.getShooterAngle() <= Constants.ampAngle+2){
       speed = Constants.ampSpeed;
     }else if (shooter_subsystem.getShooterAngle() <= Constants.speakerAngle-2 && shooter_subsystem.getShooterAngle() <= Constants.speakerAngle+2){
@@ -36,13 +36,13 @@ public class OutakeCommand extends Command{
   public void execute() {
     shooter_subsystem.setMotor(speed);
     Timer.delay(1);
-    shooter_subsystem.setShooterSol(true);
+    shooter_subsystem.setShooterSol(false);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter_subsystem.setShooterSol(false);
+    shooter_subsystem.setShooterSol(true);
     shooter_subsystem.setMotor(0.0);
   }
 
