@@ -29,9 +29,9 @@ public class IntakeAngleCommand extends Command{
     if(shooter_subsystem.getShooterAngle()<Constants.intakeAngle+1 && shooter_subsystem.getShooterAngle()>Constants.intakeAngle-1){
         isFinished = true;
     }else if (shooter_subsystem.getShooterAngle()> Constants.intakeAngle+1){
-        shooter_subsystem.decreaseAngle();
-    }else if (shooter_subsystem.getShooterAngle()< Constants.intakeAngle-1){
         shooter_subsystem.increaseAngle();
+    }else if (shooter_subsystem.getShooterAngle()< Constants.intakeAngle-1){
+        shooter_subsystem.decreaseAngle();
     }    
   }
 

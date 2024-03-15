@@ -22,6 +22,7 @@ import frc.robot.Constants;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -122,24 +123,51 @@ public class RobotContainer {
        
         
     //test comamnds
-    Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new TestIntake(m_shooter));
-    Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new TestOutake(m_shooter));
-    Constants.XBOX_CONTROLLER.rightBumper().whileTrue(new TestDecreaseAngle(m_shooter));
-    Constants.XBOX_CONTROLLER.leftBumper().whileTrue(new TestIncreaseAngle(m_shooter));
-    Constants.XBOX_CONTROLLER.a().onTrue(new ShooterPistonCommand(m_shooter));
-    Constants.XBOX_CONTROLLER.b().whileTrue(new TestAngleReader(m_shooter));
-    /*Possible actual controller modes
+    //Constants.XBOX_CONTROLLER.povUp().onTrue(new IntakeAngleCommand(m_shooter));
+    //Constants.XBOX_CONTROLLER.povDown().onTrue(new SpeakerAngleCommand(m_shooter));
     
-     * 
-     */
-    /*Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new OutakeCommand(m_shooter));
-    Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new intakeCommand(m_shooter));
-    Constants.XBOX_CONTROLLER.a().onTrue(new ShooterPistonCommand(m_shooter));
-    Constants.XBOX_CONTROLLER.x().onTrue(new AmpAngleCommand(m_shooter));
-    Constants.XBOX_CONTROLLER.y().onTrue(new IntakeAngleCommand(m_shooter));
-    Constants.XBOX_CONTROLLER.b().onTrue(new SpeakerAngleCommand(m_shooter));
+    //Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new TestIntake(m_shooter));
+    //Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new TestOutake(m_shooter));
+    
+    //Constants.XBOX_CONTROLLER.rightBumper().whileTrue(new TestDecreaseAngle(m_shooter));
+    //Constants.XBOX_CONTROLLER.leftBumper().whileTrue(new TestIncreaseAngle(m_shooter));
 
-*/
+    //Constants.XBOX_CONTROLLER.b().whileTrue(new TestAngleReader(m_shooter));
+    //Constants.XBOX_CONTROLLER.y().whileTrue(new ClimbUpCommand(m_climb));
+    //Constants.XBOX_CONTROLLER.x().whileTrue(new ClimbDownCommand(m_climb));
+    //Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new OutakeCommand(m_shooter));
+    //Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new intakeCommand(m_shooter));
+    //Constants.XBOX_CONTROLLER.a().onTrue(new ShooterPistonCommand(m_shooter));
+    //Constants.XBOX_CONTROLLER.x().onTrue(new AmpAngleCommand(m_shooter));
+    //Constants.XBOX_CONTROLLER.y().onTrue(new IntakeAngleCommand(m_shooter));
+    //Constants.XBOX_CONTROLLER.b().onTrue(new SpeakerAngleCommand(m_shooter));
+    //Constants.XBOX_CONTROLLER.povDown().whileTrue(new TestAngleReader(m_shooter));
+    //Constants.XBOX_CONTROLLER.povRight().whileTrue(new TestIncreaseAngle(m_shooter));
+    //Constants.XBOX_CONTROLLER.povLeft().whileTrue(new TestDecreaseAngle(m_shooter));
+    
+    //shooter
+    Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new intakeCommand(m_shooter));
+    Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new OutakeCommand(m_shooter));
+
+    //climb
+    Constants.XBOX_CONTROLLER.rightBumper().whileTrue(new ClimbUpCommand(m_climb));
+    Constants.XBOX_CONTROLLER.leftBumper().whileTrue(new ClimbDownCommand(m_climb));
+
+   //angles 
+    Constants.XBOX_CONTROLLER.x().toggleOnTrue(new AmpAngleCommand(m_shooter));
+    Constants.XBOX_CONTROLLER.y().toggleOnTrue(new SpeakerAngleCommand(m_shooter));
+    Constants.XBOX_CONTROLLER.b().toggleOnTrue(new IntakeAngleCommand(m_shooter));
+
+    //Emergency
+    Constants.XBOX_CONTROLLER.a().onTrue(new ShooterPistonCommand(m_shooter));
+    Constants.XBOX_CONTROLLER.povDown().whileTrue(new TestDecreaseAngle(m_shooter));
+    Constants.XBOX_CONTROLLER.povUp().whileTrue(new TestIncreaseAngle(m_shooter));
+    Constants.XBOX_CONTROLLER.povRight().whileTrue(new TestAngleReader(m_shooter));
+
+
+
+    
+
     //Constants.XBOX_CONTROLLER.a().whileTrue(testApril);
 
 
@@ -157,7 +185,15 @@ public class RobotContainer {
    public Command getAutonomousCommand() {
     // Create config for trajectory
     return null;
-    
+
+    //AutoCommands
+    //return new AutoSpeakerCommand(m_shooter).andThen(new LeaveCommand(m_robotDrive));
+    //return new AutoSpeakerCommand(m_shooter).andThen(new LeaveRightCommand(m_robotDrive));
+    //return new AutoSpeakerCommand(m_shooter).andThen(new LeaveLeftCommand(m_robotDrive));
+    //return new AutoSpeakerCommand(m_shooter)
+
+
+   // Create config for trajectory
    /*TrajectoryConfig config = new TrajectoryConfig(
         kMaxSpeedMetersPerSecond,
         kMaxAccelerationMetersPerSecondSquared)
@@ -211,6 +247,8 @@ public class RobotContainer {
     //return swerveControllerExitCommunityCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false, false));
     return new LeaveLeftCommand(m_robotDrive);
     */
+
+
    }
 
 }

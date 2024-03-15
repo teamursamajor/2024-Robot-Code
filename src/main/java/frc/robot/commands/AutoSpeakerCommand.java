@@ -25,6 +25,7 @@ public class AutoSpeakerCommand extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
     
 }
 
@@ -34,13 +35,17 @@ public class AutoSpeakerCommand extends Command {
     if(!angleGood){
     if(shooter_subsystem.getShooterAngle()<Constants.speakerAngle+1 && shooter_subsystem.getShooterAngle()>Constants.speakerAngle-1){
       shooter_subsystem.stopAngle();
-      angleGood = true;
+      isFinished = true;
+      //angleGood = true;
      }else if (shooter_subsystem.getShooterAngle()> Constants.speakerAngle+1){
-      shooter_subsystem.decreaseAngle();
-    }else if (shooter_subsystem.getShooterAngle()< Constants.speakerAngle-1){
       shooter_subsystem.increaseAngle();
+    }else if (shooter_subsystem.getShooterAngle()< Constants.speakerAngle-1){
+      shooter_subsystem.decreaseAngle();
     }   
-  }if(!speedGood){
+  }
+  
+  
+  /*if(!speedGood){
     if((shooter_subsystem.getSpeed() < desesiredSpeed-me) && (shooter_subsystem.getSpeed() > desesiredSpeed+me)){
       speedGood = true;
     }
@@ -48,6 +53,7 @@ public class AutoSpeakerCommand extends Command {
     shooter_subsystem.setShooterSol(false);
     isFinished = true;
   }
+  */
 
 
   }
@@ -59,8 +65,10 @@ public class AutoSpeakerCommand extends Command {
   @Override
   public void end(boolean interrupted) {
     Timer.delay(1.5);
-    shooter_subsystem.setShooterSol(true);
+    shooter_subsystem.setShooterSol(false);
+    Timer.delay(.3);
     shooter_subsystem.setMotor(0.0);
+    shooter_subsystem.setShooterSol(true);
 
   }
 

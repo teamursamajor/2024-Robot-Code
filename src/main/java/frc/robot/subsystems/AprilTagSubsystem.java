@@ -16,7 +16,7 @@ public class AprilTagSubsystem extends SubsystemBase {
     double speakerHeight = Units.inchesToMeters(51.875);
     double testHeight = Units.inchesToMeters(71.625);
     double testcamHeight = Units.inchesToMeters(24);
-    double cameraPitchRadians = Units.degreesToRadians(20); // Angle between horizontal and the camera.
+    double cameraPitchRadians = Units.degreesToRadians(1); // Angle between horizontal and the camera.
 
     PhotonCamera camera = new PhotonCamera("Arducam_OV9281_USB_Camera"); // Change to camera name
 

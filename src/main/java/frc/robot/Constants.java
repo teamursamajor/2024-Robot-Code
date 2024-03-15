@@ -29,11 +29,11 @@ public final class Constants {
   static Translation2d m_backRightLocation = new Translation2d(-0.381, -0.381);
   public static ShuffleboardTab driverTab = Shuffleboard.getTab("Driver");
   public static ShuffleboardTab debugTab = Shuffleboard.getTab("Debug");
-  public static double ampAngle = 30.0;
-  public static double speakerAngle = 70.0;
-  public static double intakeAngle = 50.0;
+  public static double ampAngle = 65;
+  public static double speakerAngle = 60;
+  public static double intakeAngle = 62;
   public static double intakeSpeed = -1.0;
   public static double speakerSpeed = 1.0;
-  public static double ampSpeed = .25;
+  public static double ampSpeed = .15;
 
 }

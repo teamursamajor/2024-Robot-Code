@@ -27,7 +27,7 @@ public class ShooterSubsystem extends SubsystemBase{
     CANSparkMax shooterMotor2 = new CANSparkMax(8, MotorType.kBrushless);
 
     //TalonFX adjustableAngleMotor = new TalonFX(1);
-    Spark adjustableAngleMotor = new Spark(0);
+    Spark adjustableAngleMotor = new Spark(9);
 
     DoubleSolenoid notePusher = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 15);
     Compressor comp = new Compressor(1, PneumaticsModuleType.REVPH);
@@ -35,11 +35,14 @@ public class ShooterSubsystem extends SubsystemBase{
     // Initializes an AnalogPotentiometer on analog port 0
 // The full range of motion (in meaningful external units) is 0-180 (this could be degrees, for instance)
 // The "starting point" of the motion, i.e. where the mechanism is located when the potentiometer reads 0v, is 0.
-    AnalogPotentiometer angleReader = new AnalogPotentiometer(0, 180, 0);
+//45-80
+    AnalogPotentiometer angleReader = new AnalogPotentiometer(0, 60, 0);
+    
 
     public ShooterSubsystem(){
         setShooterSol(true);
         comp.enableDigital();
+        System.out.println(comp.isEnabled());
         shooterMotor1.setIdleMode(IdleMode.kCoast);
         shooterMotor2.setIdleMode(IdleMode.kCoast);
     }
@@ -47,7 +50,8 @@ public class ShooterSubsystem extends SubsystemBase{
 
 
     public void increaseAngle(){
-        adjustableAngleMotor.set(.35);
+        adjustableAngleMotor.set(.40);
+        
     }
 
     public void decreaseAngle(){
@@ -90,7 +94,6 @@ public class ShooterSubsystem extends SubsystemBase{
     @Override
     public void periodic() {
         shooterAngle = angleReader.get();
-        //System.out.println(shooterAngle);
     }
 
 
