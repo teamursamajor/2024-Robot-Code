@@ -32,9 +32,9 @@ public class AutoSpeakerCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(!angleGood){
     if(shooter_subsystem.getShooterAngle()<Constants.speakerAngle+.25 && shooter_subsystem.getShooterAngle()>Constants.speakerAngle-.25){
       shooter_subsystem.stopAngle();
+      shooter_subsystem.setMotor(Constants.speakerSpeed);
       isFinished = true;
       //angleGood = true;
      }else if (shooter_subsystem.getShooterAngle()> Constants.speakerAngle+.25){
@@ -42,7 +42,7 @@ public class AutoSpeakerCommand extends Command {
     }else if (shooter_subsystem.getShooterAngle()< Constants.speakerAngle-.25){
       shooter_subsystem.decreaseAngle();
     }   
-  }
+  
   
   
   /*if(!speedGood){
@@ -64,7 +64,7 @@ public class AutoSpeakerCommand extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Timer.delay(1.5);
+    Timer.delay(2.5);
     shooter_subsystem.setShooterSol(false);
     Timer.delay(.3);
     shooter_subsystem.setMotor(0.0);

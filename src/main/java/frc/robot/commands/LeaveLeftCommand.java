@@ -25,9 +25,9 @@ public class LeaveLeftCommand extends Command{
     drive_Subsystem.drive(0, 0, 0, false, false);
     Timer.delay(.3);
     drive_Subsystem.drive(0, 0, .30, false, false);
-    Timer.delay(1.1);
+    Timer.delay(.5);
     drive_Subsystem.drive(-.25, 0, 0, false, false);
-    Timer.delay(5);
+    Timer.delay(2);
     drive_Subsystem.drive(0, 0, 0, false, false);
     isFinished = true;
   }

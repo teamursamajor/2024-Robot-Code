@@ -149,9 +149,9 @@ public class RobotContainer {
     //Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new intakeCommand(m_shooter));
     //Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new OutakeCommand(m_shooter));
 
-    Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new TestOutake(m_shooter));
-
-     Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new intakeCommand(m_shooter));
+    
+    Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new intakeCommand(m_shooter));
+    Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new OutakeCommand(m_shooter));
 
 
     //climb
@@ -168,6 +168,7 @@ public class RobotContainer {
     Constants.XBOX_CONTROLLER.povDown().whileTrue(new TestDecreaseAngle(m_shooter));
     Constants.XBOX_CONTROLLER.povUp().whileTrue(new TestIncreaseAngle(m_shooter));
     Constants.XBOX_CONTROLLER.povRight().whileTrue(new TestAngleReader(m_shooter));
+    Constants.XBOX_CONTROLLER.povLeft().whileTrue(new TestOutake(m_shooter));
 
     
 
@@ -191,11 +192,11 @@ public class RobotContainer {
   
    public Command getAutonomousCommand() {
     // Create config for trajectory
-    return null;
+    //return null;
 
     //AutoCommands
     //return new AutoSpeakerCommand(m_shooter).andThen(new LeaveCommand(m_robotDrive));
-    //return new AutoSpeakerCommand(m_shooter).andThen(new LeaveRightCommand(m_robotDrive));
+    return new AutoSpeakerCommand(m_shooter).andThen(new LeaveRightCommand(m_robotDrive));
     //return new AutoSpeakerCommand(m_shooter).andThen(new LeaveLeftCommand(m_robotDrive));
     //return new AutoSpeakerCommand(m_shooter)
 

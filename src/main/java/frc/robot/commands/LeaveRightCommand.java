@@ -27,9 +27,9 @@ public class LeaveRightCommand extends Command {
     driveSubsystem.drive(0, 0, 0, false, false);
     Timer.delay(.3);
     driveSubsystem.drive(0, 0, -.30, false, false);
-    Timer.delay(1.1);
+    Timer.delay(.5);
     driveSubsystem.drive(-.25, 0, 0, false, false);
-    Timer.delay(3);
+    Timer.delay(2);
     driveSubsystem.drive(0, 0, 0, false, false);
     isFinished = true;
 

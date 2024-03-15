@@ -36,8 +36,8 @@ public final class Constants {
   public static double intakeAngle = 63.4;
 
 
-  public static double intakeSpeed = -1.0;
-  public static double speakerSpeed = 1.0;
-  public static double ampSpeed = .15;
+  public static double intakeSpeed = 1.0;
+  public static double speakerSpeed = -.75;
+  public static double ampSpeed = -.15;
 
 }
