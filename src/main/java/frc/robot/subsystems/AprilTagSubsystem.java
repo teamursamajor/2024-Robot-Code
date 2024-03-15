@@ -9,6 +9,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class AprilTagSubsystem extends SubsystemBase {
     double cameraHeight = Units.inchesToMeters(37);
@@ -25,7 +26,17 @@ public class AprilTagSubsystem extends SubsystemBase {
     PhotonTrackedTarget target = result.getBestTarget();
 
     public AprilTagSubsystem() {
-        SmartDashboard.putNumber("Yaw", getYawResult());
+        //SmartDashboard.putNumber("Yaw", getYawResult());
+        Constants.debugTab.addNumber("Yaw", () -> {
+            return getYawResult();
+        });
+        Constants.debugTab.addNumber("Distance to Soruce", () -> {
+            return getDistanceToSource();
+        });
+         Constants.debugTab.addNumber("Distance to Speaker", () -> {
+            return getDistanceToSpeaker();
+        });
+            
     }
 
     public double getDistanceToSpeaker() {

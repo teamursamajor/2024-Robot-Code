@@ -33,13 +33,13 @@ public class AutoSpeakerCommand extends Command {
   @Override
   public void execute() {
     if(!angleGood){
-    if(shooter_subsystem.getShooterAngle()<Constants.speakerAngle+1 && shooter_subsystem.getShooterAngle()>Constants.speakerAngle-1){
+    if(shooter_subsystem.getShooterAngle()<Constants.speakerAngle+.25 && shooter_subsystem.getShooterAngle()>Constants.speakerAngle-.25){
       shooter_subsystem.stopAngle();
       isFinished = true;
       //angleGood = true;
-     }else if (shooter_subsystem.getShooterAngle()> Constants.speakerAngle+1){
+     }else if (shooter_subsystem.getShooterAngle()> Constants.speakerAngle+.25){
       shooter_subsystem.increaseAngle();
-    }else if (shooter_subsystem.getShooterAngle()< Constants.speakerAngle-1){
+    }else if (shooter_subsystem.getShooterAngle()< Constants.speakerAngle-.25){
       shooter_subsystem.decreaseAngle();
     }   
   }

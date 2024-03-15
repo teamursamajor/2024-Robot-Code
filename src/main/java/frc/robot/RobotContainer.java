@@ -146,23 +146,30 @@ public class RobotContainer {
     //Constants.XBOX_CONTROLLER.povLeft().whileTrue(new TestDecreaseAngle(m_shooter));
     
     //shooter
-    Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new intakeCommand(m_shooter));
-    Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new OutakeCommand(m_shooter));
+    //Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new intakeCommand(m_shooter));
+    //Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new OutakeCommand(m_shooter));
+
+    Constants.XBOX_CONTROLLER.leftTrigger().whileTrue(new TestOutake(m_shooter));
+
+     Constants.XBOX_CONTROLLER.rightTrigger().whileTrue(new intakeCommand(m_shooter));
+
 
     //climb
     Constants.XBOX_CONTROLLER.rightBumper().whileTrue(new ClimbUpCommand(m_climb));
     Constants.XBOX_CONTROLLER.leftBumper().whileTrue(new ClimbDownCommand(m_climb));
 
    //angles 
-    Constants.XBOX_CONTROLLER.x().toggleOnTrue(new AmpAngleCommand(m_shooter));
-    Constants.XBOX_CONTROLLER.y().toggleOnTrue(new SpeakerAngleCommand(m_shooter));
-    Constants.XBOX_CONTROLLER.b().toggleOnTrue(new IntakeAngleCommand(m_shooter));
+    Constants.XBOX_CONTROLLER.x().onTrue(new AmpAngleCommand(m_shooter));
+    Constants.XBOX_CONTROLLER.y().onTrue(new SpeakerAngleCommand(m_shooter));
+    Constants.XBOX_CONTROLLER.b().onTrue(new IntakeAngleCommand(m_shooter));
 
     //Emergency
     Constants.XBOX_CONTROLLER.a().onTrue(new ShooterPistonCommand(m_shooter));
     Constants.XBOX_CONTROLLER.povDown().whileTrue(new TestDecreaseAngle(m_shooter));
     Constants.XBOX_CONTROLLER.povUp().whileTrue(new TestIncreaseAngle(m_shooter));
     Constants.XBOX_CONTROLLER.povRight().whileTrue(new TestAngleReader(m_shooter));
+
+    
 
 
 

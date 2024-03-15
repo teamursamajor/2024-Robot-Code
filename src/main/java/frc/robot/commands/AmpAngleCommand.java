@@ -20,17 +20,20 @@ public class AmpAngleCommand extends Command{
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    isFinished = false;
+    System.out.println("Amp Init");
     
 }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(shooter_subsystem.getShooterAngle()<Constants.ampAngle+1 && shooter_subsystem.getShooterAngle()>Constants.ampAngle-1){
+    if(shooter_subsystem.getShooterAngle()<Constants.ampAngle+.25 && shooter_subsystem.getShooterAngle()>Constants.ampAngle-.25){
+      System.out.println("Amp good");
         isFinished = true;
-    }else if (shooter_subsystem.getShooterAngle()> Constants.ampAngle+1){
+    }else if (shooter_subsystem.getShooterAngle()> Constants.ampAngle+.25){
         shooter_subsystem.increaseAngle();
-    }else if (shooter_subsystem.getShooterAngle()< Constants.ampAngle-1){
+    }else if (shooter_subsystem.getShooterAngle()< Constants.ampAngle-.25){
         shooter_subsystem.decreaseAngle();
     }    
   }

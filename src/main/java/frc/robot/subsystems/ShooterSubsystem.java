@@ -16,9 +16,10 @@ import edu.wpi.first.wpilibj.ADIS16470_IMU.IMUAxis;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase{
-    double shooterAngle;
+    double shooterAngle = 0;
     public double minShooterAngle;
     public double maxShooterAngle;
   
@@ -36,26 +37,31 @@ public class ShooterSubsystem extends SubsystemBase{
 // The full range of motion (in meaningful external units) is 0-180 (this could be degrees, for instance)
 // The "starting point" of the motion, i.e. where the mechanism is located when the potentiometer reads 0v, is 0.
 //45-80
-    AnalogPotentiometer angleReader = new AnalogPotentiometer(0, 60, 0);
-    
+    AnalogPotentiometer angleReader = new AnalogPotentiometer(0, 70, 0);
+  
 
     public ShooterSubsystem(){
         setShooterSol(true);
         comp.enableDigital();
-        System.out.println(comp.isEnabled());
+        //System.out.println(comp.isEnabled());
         shooterMotor1.setIdleMode(IdleMode.kCoast);
         shooterMotor2.setIdleMode(IdleMode.kCoast);
+        Constants.driverTab.addNumber("Angle", () -> {
+        return shooterAngle;});
+        Constants.debugTab.addNumber("Angle", () -> {
+        return shooterAngle;});
+
     }
 
 
 
     public void increaseAngle(){
-        adjustableAngleMotor.set(.40);
+        adjustableAngleMotor.set(.45);
         
     }
 
     public void decreaseAngle(){
-        adjustableAngleMotor.set(-.25);
+        adjustableAngleMotor.set(-.35);
     }
 
     public void setMotor(double speed){

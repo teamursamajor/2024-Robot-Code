@@ -20,17 +20,20 @@ public class SpeakerAngleCommand extends Command{
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    isFinished = false;
+    System.out.println("Speaker innit");
     
 }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(shooter_subsystem.getShooterAngle()<Constants.speakerAngle+1 && shooter_subsystem.getShooterAngle()>Constants.speakerAngle-1){
-        isFinished = true;
-    }else if (shooter_subsystem.getShooterAngle()> Constants.speakerAngle+1){
+    if(shooter_subsystem.getShooterAngle()<Constants.speakerAngle+.25 && shooter_subsystem.getShooterAngle()>Constants.speakerAngle-.25){
+      System.out.println("Speaker good");
+      isFinished = true;
+    }else if (shooter_subsystem.getShooterAngle()> Constants.speakerAngle+.25){
         shooter_subsystem.increaseAngle();
-    }else if (shooter_subsystem.getShooterAngle()< Constants.speakerAngle-1){
+    }else if (shooter_subsystem.getShooterAngle()< Constants.speakerAngle-.25){
         shooter_subsystem.decreaseAngle();
     }    
   }
